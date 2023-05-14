@@ -8,7 +8,7 @@ from main_class import Principal
 
 def main():
     try:
-        path_folder: Path("C:\Users\usuario\Downloads")
+        path_folder = Path("C:/Users/usuario/Downloads")
 
         app = Principal()
         app.initiation(path_folder)
@@ -17,7 +17,7 @@ def main():
         return 0
     
     except Exception as err:
-        print(err)
+        print(f"{__name__}: {err}")
         return -1
 
 if __name__ == '__main__':

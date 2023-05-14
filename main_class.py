@@ -36,7 +36,7 @@ class Principal():
             folder_work = os.listdir()
 
             for element in folder_work: # discriminamos ficheros o carpetas
-                if '.' not in element:
+                if '.' in element:
                     path = os.path.join(self.root_folder, element)
                     self.files.append(Fichero(element, path))
                 else:
@@ -50,13 +50,15 @@ class Principal():
 
         try:
             for element in self.files:
-                folder = check_type_file(element.extension)
+                folder = check_type_file(f".{element.extension}")
+
                 if folder:
+
                     if folder not in self.sub_folder:
                         os.mkdir(folder)
-                        self.sub_folder.append(element.extension)
+                        self.sub_folder.append(folder)
 
-                    shutil.move(element.name, element.extension)
+                    shutil.move(element.name, folder)
 
         except Exception as err:
             raise Exception(f"{__name__}: {err}, {self.files}")
